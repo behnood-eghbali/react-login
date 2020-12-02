@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {Link} from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
@@ -73,15 +74,17 @@ function Login() {
                           onChange={onChange}
                         />
                         <br />
-                        <SubmitButton 
-                          type="submit"
-                          size="large"
-                          fontSize="large"
-                          variant="text"
-                          color="primary"
-                        >
-                        Submit
-                        </SubmitButton>
+                        <Link to="/Home">
+                          <SubmitButton 
+                            type="submit"
+                            size="large"
+                            fontSize="large"
+                            variant="text"
+                            color="primary"
+                          >
+                          Submit
+                          </SubmitButton>
+                        </Link>
                       </form>
                       <br />
                   </Paper>
