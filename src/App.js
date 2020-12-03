@@ -1,9 +1,7 @@
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-
-
 
 function App() {
   return (
