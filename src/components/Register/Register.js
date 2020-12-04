@@ -5,7 +5,8 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles'
-import './Login.css'
+import Checkbox from '@material-ui/core/Checkbox'
+import './Register.css'
 
 const SubmitButton = withStyles((theme) => ({
   root: {
@@ -32,12 +33,19 @@ const theme = createMuiTheme({
 })
  */
 
-function Login() {
+function Register() {
 
   const [ values, setValues ] = useState({
+    username: '',
     email: '',
     password: ''
   })
+
+  const [checked, setChecked] = useState(true);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   const onChange = (e) => {
     setValues({...values, [e.target.name]: e.target.value})
@@ -53,8 +61,17 @@ function Login() {
               <Grid item xs={3} />
               <Grid item xs={6}>
                   <Paper elevation={3}>
-                      <h2>Sign in to Home page</h2>
+                      <h2>Sign up for Home page</h2>
                       <form onSubmit={onSubmit} noValidate>
+                        <TextField 
+                          id="outlined-basic"
+                          label="Username"
+                          variant="outlined"
+                          name="username"
+                          value={values.username}
+                          onChange={onChange}
+                        />
+                        <br />
                         <TextField 
                           id="outlined-basic"
                           label="Email"
@@ -82,14 +99,20 @@ function Login() {
                             variant="text"
                             color="primary"
                           >
-                          Sign in
+                          Sign up
                           </SubmitButton>
                         </Link>
                       </form>
-                      <p>Don't have an account?</p>
-                      <Link to="/Register">
+                      <p>Remember me</p>
+                      <Checkbox
+                        checked={checked}
+                        onChange={handleChange}
+                        inputProps={{ 'aria-label': 'default checkbox' }}
+                      />
+                      <p>Already have an account?</p>
+                      <Link to="/">
                         <Button variant="contained" color="primary">
-                        Sign up
+                        Sign in
                         </Button>
                       </Link>
                   </Paper>
@@ -100,4 +123,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Register
