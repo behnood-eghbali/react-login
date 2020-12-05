@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
@@ -10,6 +11,7 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 // import { createMuiTheme } from '@material-ui/core/styles'
 // import purple from '@material-ui/core/colors/purple'
+import { AuthContext } from '../../contexts/AuthContext'
 import './Home.css'
 
 /* 
@@ -31,6 +33,8 @@ const style = {
  */
 function Home() {
 
+  const { values } = useContext(AuthContext)
+
   return (
       <div className="Home">
         <AppBar position="static" style={{background: '#f73378'}}>
@@ -39,7 +43,7 @@ function Home() {
                 <MenuIcon />
                 </IconButton>
                 <Typography variant="h6">
-                    Welcome
+                    Welcome {values.username}
                 </Typography>
                 <Button color="inherit">Logout</Button>
             </Toolbar>
@@ -49,6 +53,7 @@ function Home() {
             <Grid item xs={6}>
                 <Card className="card">
                     <CardContent>
+                      <h2>Hello {values.username}</h2>
                     </CardContent>
                     <CardActions>
                         <Button size="small">More Info</Button>

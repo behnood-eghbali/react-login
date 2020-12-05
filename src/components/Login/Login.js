@@ -1,10 +1,11 @@
-import {useState} from 'react'
+import { useContext } from 'react'
 import {Link} from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles'
+import { AuthContext } from '../../contexts/AuthContext'
 import './Login.css'
 
 const SubmitButton = withStyles((theme) => ({
@@ -34,18 +35,7 @@ const theme = createMuiTheme({
 
 function Login() {
 
-  const [ values, setValues ] = useState({
-    email: '',
-    password: ''
-  })
-
-  const onChange = (e) => {
-    setValues({...values, [e.target.name]: e.target.value})
-  }
-
-  const onSubmit = (e) => {
-    e.preventDefault()
-  }
+  const { values, handleChange, handleSubmit } = useContext(AuthContext)
 
   return (
       <div className="Login">
@@ -54,14 +44,14 @@ function Login() {
               <Grid item xs={6}>
                   <Paper elevation={3}>
                       <h2>Sign in to Home page</h2>
-                      <form onSubmit={onSubmit} noValidate>
+                      <form onSubmit={handleSubmit} noValidate>
                         <TextField 
                           id="outlined-basic"
                           label="Email"
                           variant="outlined"
                           name="email"
                           value={values.email}
-                          onChange={onChange}
+                          onChange={handleChange}
                         />
                         <br />
                         <TextField
@@ -71,7 +61,7 @@ function Login() {
                           type="password"
                           name="password"
                           value={values.password}
-                          onChange={onChange}
+                          onChange={handleChange}
                         />
                         <br />
                         <Link to="/Home">

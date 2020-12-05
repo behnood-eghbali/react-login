@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useContext } from 'react'
 import {Link} from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles'
 import Checkbox from '@material-ui/core/Checkbox'
+import { AuthContext } from '../../contexts/AuthContext'
 import './Register.css'
 
 const SubmitButton = withStyles((theme) => ({
@@ -35,25 +36,7 @@ const theme = createMuiTheme({
 
 function Register() {
 
-  const [ values, setValues ] = useState({
-    username: '',
-    email: '',
-    password: ''
-  })
-
-  const [checked, setChecked] = useState(true);
-
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
-
-  const onChange = (e) => {
-    setValues({...values, [e.target.name]: e.target.value})
-  }
-
-  const onSubmit = (e) => {
-    e.preventDefault()
-  }
+  const { values, checked, handleChange, handleSubmit, handleCheck } = useContext(AuthContext)
 
   return (
       <div className="Login">
@@ -62,14 +45,14 @@ function Register() {
               <Grid item xs={6}>
                   <Paper elevation={3}>
                       <h2>Sign up for Home page</h2>
-                      <form onSubmit={onSubmit} noValidate>
+                      <form onSubmit={handleSubmit} noValidate>
                         <TextField 
                           id="outlined-basic"
                           label="Username"
                           variant="outlined"
                           name="username"
                           value={values.username}
-                          onChange={onChange}
+                          onChange={handleChange}
                         />
                         <br />
                         <TextField 
@@ -78,7 +61,7 @@ function Register() {
                           variant="outlined"
                           name="email"
                           value={values.email}
-                          onChange={onChange}
+                          onChange={handleChange}
                         />
                         <br />
                         <TextField
@@ -88,7 +71,7 @@ function Register() {
                           type="password"
                           name="password"
                           value={values.password}
-                          onChange={onChange}
+                          onChange={handleChange}
                         />
                         <br />
                         <Link to="/Home">
@@ -106,7 +89,7 @@ function Register() {
                       <p>Remember me</p>
                       <Checkbox
                         checked={checked}
-                        onChange={handleChange}
+                        onChange={handleCheck}
                         inputProps={{ 'aria-label': 'default checkbox' }}
                       />
                       <p>Already have an account?</p>
