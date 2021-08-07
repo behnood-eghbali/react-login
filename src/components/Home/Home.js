@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import {Link} from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
@@ -45,7 +46,9 @@ function Home() {
                 <Typography variant="h6">
                     Welcome {values.username}
                 </Typography>
+                <Link to="/">
                 <Button color="inherit">Logout</Button>
+                </Link>
             </Toolbar>
         </AppBar>
         <Grid container>
