@@ -47,7 +47,7 @@ function Home() {
                     Welcome {values.username}
                 </Typography>
                 <Link to="/">
-                <Button color="inherit">Logout</Button>
+                  <Button color="inherit">Logout</Button>
                 </Link>
             </Toolbar>
         </AppBar>
